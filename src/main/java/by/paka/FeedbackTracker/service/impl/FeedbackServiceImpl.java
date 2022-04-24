@@ -6,6 +6,8 @@ import by.paka.FeedbackTracker.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class FeedbackServiceImpl implements FeedbackService {
     private final FeedbackRepository feedbackRepository;
@@ -16,6 +18,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
+    @Transactional
     public void createFeedbackItem(FeedbackItem item) {
         feedbackRepository.createFeedbackItem(item);
     }
