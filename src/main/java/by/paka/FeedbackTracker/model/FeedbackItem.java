@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class FeedbackItem {
     @Id
-    private Long id;
+    private Integer id;
 
     private String text;
 

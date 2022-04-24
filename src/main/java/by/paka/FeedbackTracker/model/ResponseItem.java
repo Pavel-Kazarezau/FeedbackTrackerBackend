@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class ResponseItem {
     @Id
-    private Long feedbackItemId;
+    private Integer feedbackItemId;
 
     private String response;
 
