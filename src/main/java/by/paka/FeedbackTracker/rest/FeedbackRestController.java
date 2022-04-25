@@ -1,17 +1,23 @@
 package by.paka.FeedbackTracker.rest;
 
 import by.paka.FeedbackTracker.model.FeedbackItem;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import by.paka.FeedbackTracker.repository.FeedbackRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+@RestController
+public class FeedbackRestController {
+    private final FeedbackRepository feedbackRepository;
 
-@RepositoryRestResource(collectionResourceRel = "feedbacks", path = "feedbacks")
-public interface FeedbackRestController extends PagingAndSortingRepository<FeedbackItem, Integer> {
+    @Autowired
+    public FeedbackRestController(FeedbackRepository repository) {
+        this.feedbackRepository = repository;
+    }
 
-    @Override
-    Iterable<FeedbackItem> findAll();
-
-    @Override
-    Optional<FeedbackItem> findById(Integer id);
+    @PutMapping("feedbacks")
+    public @ResponseBody ResponseEntity<?> update(@RequestBody FeedbackItem item) {
+        final FeedbackItem feedbackItem = feedbackRepository.updateFeedbackItem(item);
+        return ResponseEntity.ok(feedbackItem);
+    }
 }
