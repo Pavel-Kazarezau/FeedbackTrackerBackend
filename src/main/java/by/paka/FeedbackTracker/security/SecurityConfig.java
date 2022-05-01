@@ -1,6 +1,7 @@
 package by.paka.FeedbackTracker.security;
 
 import by.paka.FeedbackTracker.filter.PakaAuthFilter;
+import by.paka.FeedbackTracker.filter.PakaAuthorizationFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -41,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/update/feedbacks").hasAnyAuthority("ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(authFilter);
-        //http.addFilterBefore(new PakaAuthFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new PakaAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
