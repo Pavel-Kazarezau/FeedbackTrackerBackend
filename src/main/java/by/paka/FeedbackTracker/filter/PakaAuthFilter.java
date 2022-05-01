@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 public class PakaAuthFilter extends UsernamePasswordAuthenticationFilter {
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     public PakaAuthFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
