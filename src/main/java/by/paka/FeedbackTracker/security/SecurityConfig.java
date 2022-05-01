@@ -1,6 +1,7 @@
 package by.paka.FeedbackTracker.security;
 
 import by.paka.FeedbackTracker.filter.PakaAuthFilter;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +15,13 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration @EnableWebSecurity @RequiredArgsConstructor
+@Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final ObjectMapper mapper;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -26,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        PakaAuthFilter authFilter = new PakaAuthFilter(authenticationManagerBean());
+        PakaAuthFilter authFilter = new PakaAuthFilter(authenticationManagerBean(), mapper);
         authFilter.setFilterProcessesUrl("/login");
 
         http.csrf().disable();

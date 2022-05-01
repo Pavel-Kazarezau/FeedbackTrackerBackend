@@ -21,15 +21,16 @@ import java.util.stream.Collectors;
 
 public class PakaAuthFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
+    private final ObjectMapper mapper;
 
-    public PakaAuthFilter(AuthenticationManager authenticationManager) {
+    public PakaAuthFilter(AuthenticationManager authenticationManager, ObjectMapper mapper) {
         this.authenticationManager = authenticationManager;
+        this.mapper = mapper;
     }
 
     @SneakyThrows
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        ObjectMapper mapper = new ObjectMapper();
         final SystemUser user = mapper.readValue(request.getReader().lines().collect(Collectors.joining()), SystemUser.class);
         String username = user.getLogin();
         String password = user.getPassword();
