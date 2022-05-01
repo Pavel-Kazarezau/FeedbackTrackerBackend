@@ -2,6 +2,7 @@ package by.paka.FeedbackTracker.model;
 
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -16,7 +17,9 @@ public class FeedbackItem {
 
     private Long userId;
 
-    @OneToOne
+    @OneToOne( cascade = CascadeType.ALL)
     private ResponseItem responseItem;
+
+    private Boolean isCompleted = false;
 
 }

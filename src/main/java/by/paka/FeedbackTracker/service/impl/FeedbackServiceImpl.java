@@ -21,6 +21,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public FeedbackItem updateFeedbackItem(FeedbackItem item) {
+        item.setIsCompleted(true);
         return feedbackRepository.save(item);
     }
 }
