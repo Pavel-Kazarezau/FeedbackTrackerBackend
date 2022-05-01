@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("User '" + username + "' not found in database");
         }
         Collection<SimpleGrantedAuthority> authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(user.getPassword());
         return new User(user.getLogin(), user.getPassword(), authorities);
     }
 
