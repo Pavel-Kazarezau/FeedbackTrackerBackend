@@ -1,13 +1,12 @@
 package by.paka.FeedbackTracker.rest;
 
 import by.paka.FeedbackTracker.model.FeedbackItem;
-import by.paka.FeedbackTracker.repository.FeedbackRepository;
 import by.paka.FeedbackTracker.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("feedbacks")
+@RestController
 public class FeedbackRestController {
     private final FeedbackService feedbackService;
 
@@ -16,7 +15,7 @@ public class FeedbackRestController {
         this.feedbackService = feedbackService;
     }
 
-    @PutMapping
+    @PutMapping("update/feedbacks")
     public @ResponseBody ResponseEntity<?> update(@RequestBody FeedbackItem item) {
         final FeedbackItem feedbackItem = feedbackService.updateFeedbackItem(item);
         return ResponseEntity.ok(feedbackItem);
