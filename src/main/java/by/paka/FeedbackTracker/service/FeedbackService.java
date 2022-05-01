@@ -4,5 +4,7 @@ import by.paka.FeedbackTracker.model.FeedbackItem;
 
 public interface FeedbackService {
 
-    void createFeedbackItem(FeedbackItem item);
+    FeedbackItem createFeedbackItem(FeedbackItem item);
+
+    FeedbackItem updateFeedbackItem(FeedbackItem item);
 }

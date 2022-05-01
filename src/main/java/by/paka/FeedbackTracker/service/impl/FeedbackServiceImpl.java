@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
+@Transactional
 public class FeedbackServiceImpl implements FeedbackService {
     private final FeedbackRepository feedbackRepository;
 
@@ -18,8 +19,13 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    @Transactional
-    public void createFeedbackItem(FeedbackItem item) {
-        feedbackRepository.createFeedbackItem(item);
+
+    public FeedbackItem createFeedbackItem(FeedbackItem item) {
+        return feedbackRepository.save(item);
+    }
+
+    @Override
+    public FeedbackItem updateFeedbackItem(FeedbackItem item) {
+        return feedbackRepository.save(item);
     }
 }
