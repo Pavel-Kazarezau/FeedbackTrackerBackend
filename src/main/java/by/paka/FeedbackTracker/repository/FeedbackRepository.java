@@ -5,6 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface FeedbackRepository extends JpaRepository<FeedbackItem, Integer> {
-    @Override
-    FeedbackItem save(FeedbackItem feedbackItem);
 }
