@@ -2,10 +2,8 @@ package by.paka.FeedbackTracker.model;
 
 import lombok.Data;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -13,6 +11,7 @@ public class FeedbackItem {
     @Id
     private Integer id;
 
+    @Column(length = 4000)
     private String text;
 
     private Long userId;
