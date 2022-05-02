@@ -16,6 +16,8 @@ public class FeedbackItem {
 
     private Long userId;
 
+    private Date date;
+
     @OneToOne( cascade = CascadeType.ALL)
     private ResponseItem responseItem;
 

@@ -11,6 +11,8 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.Date;
+
 @Component
 public class Bot extends TelegramLongPollingBot {
     @Value("${bot.name}")
@@ -46,6 +48,7 @@ public class Bot extends TelegramLongPollingBot {
                 feedbackItem.setId(update.getUpdateId());
                 feedbackItem.setText(update.getMessage().getText());
                 feedbackItem.setUserId(update.getMessage().getFrom().getId());
+                feedbackItem.setDate(new Date());
                 feedbackService.createFeedbackItem(feedbackItem);
 
                 SendMessage message = new SendMessage();
