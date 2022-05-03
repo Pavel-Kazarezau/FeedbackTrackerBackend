@@ -18,10 +18,4 @@ public class FeedbackServiceImpl implements FeedbackService {
     public FeedbackItem createFeedbackItem(FeedbackItem item) {
         return feedbackRepository.save(item);
     }
-
-    @Override
-    public FeedbackItem updateFeedbackItem(FeedbackItem item) {
-        item.setIsCompleted(true);
-        return feedbackRepository.save(item);
-    }
 }
