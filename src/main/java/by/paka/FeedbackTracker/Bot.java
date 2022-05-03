@@ -2,6 +2,7 @@ package by.paka.FeedbackTracker;
 
 import by.paka.FeedbackTracker.model.FeedbackItem;
 import by.paka.FeedbackTracker.service.FeedbackService;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +15,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.Date;
 
 @Component
+@RequiredArgsConstructor
 public class Bot extends TelegramLongPollingBot {
     @Value("${bot.name}")
     private String botUsername;
@@ -21,9 +23,7 @@ public class Bot extends TelegramLongPollingBot {
     @Value("${bot.token}")
     private String botToken;
 
-    @Autowired
-    @Setter
-    private FeedbackService feedbackService;
+    private final FeedbackService feedbackService;
 
     @Override
     public String getBotUsername() {
