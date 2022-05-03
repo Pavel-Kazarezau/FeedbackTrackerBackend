@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         PakaAuthFilter authFilter = new PakaAuthFilter(authenticationManagerBean(), mapper);
-        authFilter.setFilterProcessesUrl("/api/login");
+        authFilter.setFilterProcessesUrl("/login");
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
